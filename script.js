@@ -30,18 +30,20 @@ function startGame() {
                         document.getElementsByClassName('container')[0].style.display = 'none';
                         body.classList.add('image-sec');
                         displayResult('green');
+                        chance = 0;
                     },2000)
-                }
-                if (checkDraw(playingArray)) {
+                } else if (checkDraw(playingArray)) {
                     setTimeout(()=> {
                         document.getElementsByClassName('container')[0].style.display = 'none';
                         body.classList.add('image-sec')
                         displayResult('black')
                     },2000)
                 }
-                
-                
                 chance++;
+                if (chance === 9) {
+                    chance = 0;
+                    console.log(chance)
+                }
             } else if (chance % 2 !== 0 && button.innerHTML === '') {
                 button.innerHTML = 'X'
                 body.style.backgroundColor = 'green';
@@ -50,8 +52,6 @@ function startGame() {
                 
                 let resultArray = checkWins(Element.dataset.value, 'red');
                 if (resultArray) {
-                    console.log(resultArray[0], 'wins');
-                    console.log('By:', resultArray[1], resultArray[2], resultArray[3])
                     let winArray = Array.from(document.querySelectorAll('.button'));
                     winArray[resultArray[1]].style.backgroundColor = 'yellow'
                     winArray[resultArray[2]].style.backgroundColor = 'yellow'
@@ -61,10 +61,9 @@ function startGame() {
                         document.getElementsByClassName('container')[0].style.display = 'none';
                         body.classList.add('image-sec');
                         displayResult('red')
+                        chance = 0;
                     },2000)
-                }
-
-                if (checkDraw(playingArray)) {
+                } else if (checkDraw(playingArray)) {
                     setTimeout(()=> {
                         document.getElementsByClassName('container')[0].style.display = 'none';
                         body.classList.add('image-sec')
@@ -130,7 +129,6 @@ function displayResult(value) {
     } else {
         statement.innerHTML = 'Draw!'
     }
-    // statement.style.color = value;
     return;
 }
 
