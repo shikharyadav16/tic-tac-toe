@@ -5,8 +5,36 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: rgb(141, 214, 243);
+    background-color: white;
     user-select: none;
+}
+
+.image-sec {
+    background-image: url('https://wallpapercave.com/wp/wp8984777.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.start-menu {
+    width: 90vw;
+    color: black;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 10px;
+}
+
+.instructions {
+    width: 94%;
+    margin-top: 10px;
+    padding: 3%;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.242);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
 .container div {
@@ -39,7 +67,7 @@ body {
 }
 
 .start, .restart {
-    background-color: #444444;
+    background-color: #2b2424;
     color: white;
     width: 90px;
     height: 50px;
@@ -56,6 +84,8 @@ body {
     width: 200px;
     height: 130px;
     border: 1px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     background: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     align-items: end;
@@ -76,13 +106,13 @@ body {
     height: 40px;
     background-color: black;
     border: 2px solid rgba(255, 255, 255, 0.4);
-    margin-right: 20px;
+    margin-right: 10px;
     border-radius: 10px;
 }
 
 .statement {
     width: 105px;
-    font-size: larger;
+    font-size: medium;
     font-family: Arial, Helvetica, sans-serif;
     color: black;
 }

@@ -1,11 +1,12 @@
 const body = document.body;
 let chance = 0;
-let playingArray = []
+var playingArray = Array(9).fill(null); 
 
 function startGame() {
-    document.getElementsByClassName('start')[0].style.display = 'none';
+    document.getElementsByClassName('start-menu')[0].style.display = 'none';
     document.getElementsByClassName('container')[0].style.display = 'grid'
     const body = document.body;
+    body.classList.remove('image-sec');
     body.style.backgroundColor = 'green';
     let chance = 0;
     let playingArray = []
@@ -16,6 +17,7 @@ function startGame() {
             if (chance % 2 === 0 && button.innerHTML === '') {
                 button.innerHTML = 'O';
                 body.style.backgroundColor = 'red'
+                body.classList.remove('image-sec');
                 button.style.color = 'green'
                 let resultArray = checkWins(Element.dataset.value, 'green');
                 if (resultArray) {
@@ -26,8 +28,15 @@ function startGame() {
                     winArray.forEach((btn) => { btn.replaceWith(btn.cloneNode(true)) })
                     setTimeout(()=> {
                         document.getElementsByClassName('container')[0].style.display = 'none';
-                        body.style.backgroundColor = 'rgb(141, 214, 243)'
-                        displayResult('green')
+                        body.classList.add('image-sec');
+                        displayResult('green');
+                    },2000)
+                }
+                if (checkDraw(playingArray)) {
+                    setTimeout(()=> {
+                        document.getElementsByClassName('container')[0].style.display = 'none';
+                        body.classList.add('image-sec')
+                        displayResult('black')
                     },2000)
                 }
                 
@@ -35,7 +44,8 @@ function startGame() {
                 chance++;
             } else if (chance % 2 !== 0 && button.innerHTML === '') {
                 button.innerHTML = 'X'
-                body.style.backgroundColor = 'green'
+                body.style.backgroundColor = 'green';
+                body.classList.remove('image-sec');
                 button.style.color = 'red'
                 
                 let resultArray = checkWins(Element.dataset.value, 'red');
@@ -49,18 +59,25 @@ function startGame() {
                     winArray.forEach((btn) => { btn.replaceWith(btn.cloneNode(true)) })
                     setTimeout(()=> {
                         document.getElementsByClassName('container')[0].style.display = 'none';
-                        body.style.backgroundColor = 'rgb(141, 214, 243)'
+                        body.classList.add('image-sec');
                         displayResult('red')
                     },2000)
                 }
 
+                if (checkDraw(playingArray)) {
+                    setTimeout(()=> {
+                        document.getElementsByClassName('container')[0].style.display = 'none';
+                        body.classList.add('image-sec')
+                        displayResult('black')
+                    },2000)
+                }
                 chance++;
             }
         })
     })
 
 
-    const checkWins = (value, color) => {
+const checkWins = (value, color) => {
         playingArray[value - 1] = color;
 
         //diagonal approach
@@ -88,17 +105,37 @@ function startGame() {
     }
 }
 
+function checkDraw(playingArray) {
+    let count = 0;
+    for (let i=0; i<9; i++) {
+        if (playingArray[i] === 'red' || playingArray[i] === 'green') {
+            count++;
+        }
+    }
+    if (count === 9) {
+        playingArray.fill(null)
+        return true;
+    }
+    return false;
+}
+
 function displayResult(value) {
     document.getElementsByClassName('won')[0].style.display = 'block';
     document.getElementsByClassName('color-win')[0].style.backgroundColor = value;
     let statement = document.getElementsByClassName('statement')[0];
-    (value === 'green')?(statement.innerHTML = 'Green Win!'):(statement.innerHTML = 'Red Win!')
-    statement.style.color = value;
+    if (value === 'green') {
+        statement.innerHTML = 'Green Winner!';
+    } else if (value === 'red') {
+        statement.innerHTML = 'Red Winner!'
+    } else {
+        statement.innerHTML = 'Draw!'
+    }
+    // statement.style.color = value;
     return;
 }
 
 function restartGame() {
-    playingArray = [];
+    playingArray.fill(null)
     document.querySelectorAll('.button').forEach((Element)=> {
         Element.innerHTML = '';
         Element.style.backgroundColor = 'aliceblue';

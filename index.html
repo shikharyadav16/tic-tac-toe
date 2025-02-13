@@ -8,8 +8,17 @@
     <link rel="stylesheet" href="./styles.css">
 </head>
 
-<body>
-    <div class="start" onclick="startGame()">START</div>
+<body class="image-sec">
+    <div class="start-menu">
+        <div class="start" onclick="startGame()">START</div>
+        <div class="instructions">
+            1.The game is played on a 3×3 grid. <br>
+            2.One player uses X, and the other uses O. <br>
+            3.Players take turns placing their mark (X or O) in an empty square. <br>
+            4.The game continues until one player gets three marks in a row, column, or diagonal, or the grid is full. <br>
+            5.If all squares are filled and no player has won, the game ends in a draw.
+        </div>
+    </div>
     <div class="container">
         <div class="button" data-value=1></div>
         <div class="button" data-value=2></div>
@@ -22,9 +31,13 @@
         <div class="button" data-value=9></div>
     </div>
     <div class="won">
-        <div class="card"><div class="color-win"></div><div class="statement">Black Win</div></div>
+        <div class="card">
+            <div class="color-win"></div>
+            <div class="statement">Black Win</div>
+        </div>
         <div class="restart" onclick="restartGame()">Restart</div>
     </div>
 </body>
 <script src="./script.js"></script>
+
 </html>
